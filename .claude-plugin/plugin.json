@@ -1,0 +1,28 @@
+{
+  "name": "onlypult",
+  "displayName": "Onlypult",
+  "version": "0.1.0",
+  "description": "Schedule and publish social media posts, Stories, Reels and Shorts, fix failed posts and read analytics in Onlypult, from a conversation.",
+  "author": {
+    "name": "Onlypult",
+    "url": "https://onlypult.com"
+  },
+  "homepage": "https://onlypult.com/dev/mcp.html",
+  "repository": "https://github.com/onlypult/agent-skills",
+  "license": "MIT",
+  "keywords": [
+    "social media",
+    "scheduling",
+    "content calendar",
+    "analytics",
+    "instagram",
+    "tiktok",
+    "linkedin",
+    "youtube",
+    "telegram",
+    "mcp",
+    "onlypult"
+  ],
+  "icon": "assets/logo.png",
+  "privacyPolicyUrl": "https://onlypult.com/privacy_policy"
+}

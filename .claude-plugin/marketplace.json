@@ -1,0 +1,12 @@
+{
+  "name": "onlypult",
+  "owner": { "name": "Onlypult", "url": "https://onlypult.com" },
+  "description": "Onlypult skills and MCP connection for Claude Code.",
+  "plugins": [
+    {
+      "name": "onlypult",
+      "source": "./",
+      "description": "Schedule and publish social media posts, Stories, Reels and Shorts, fix failed posts and read analytics in Onlypult, from a conversation."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "onlypult": {
+      "type": "http",
+      "url": "https://mcp.onlypult.com/mcp"
+    }
+  }
+}

@@ -15,7 +15,7 @@ Send one piece of content to two or more profiles without breaking a platform's 
    - Write a shorter version for the strict platforms and make **separate** `posts_create` calls per group of profiles.
    - Or keep one text and drop the platforms that cannot take it, after telling the user.
 4. When the text fits everywhere, call `posts_cross_post` with at least 2 `profile_ids`. Use `publish_now: true` or `publish_at` (`"Y-m-d H:i"`, account timezone).
-5. Platform-specific needs go in `platform_options`: YouTube needs a `title`, Pinterest a `board_id`, TikTok a `privacy` value.
+5. Platform-specific needs go in `platform_options`, not at the top level: YouTube needs a `title`, Pinterest a `board_id`, TikTok a `privacy` value. An AI label is `instagram.is_ai_generated` (platform `instagram_business`) or `facebook.is_ai_generated` with `is_reels: true`. Unknown fields return HTTP 400 and are not applied.
 6. Report per profile what was created and when it goes out.
 
 ## Watch for

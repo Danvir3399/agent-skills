@@ -1,6 +1,6 @@
 ---
 name: schedule-post
-description: Create, schedule, publish or draft a social media post in Onlypult. Use when the user wants to post something, schedule it for a time, save a draft, publish now, or edit or delete a scheduled post.
+description: Create, schedule, publish or draft a social media post in Onlypult. Use when the user wants to post something, schedule it for a time, save a draft, publish now, edit or delete a scheduled post, or asks whether a publishing option exists (AI label, poll, pin, Story, Reels, first comment, auto-delete).
 ---
 
 # Schedule a post
@@ -21,13 +21,25 @@ Turn the user's request into one Onlypult post, in the right mode, on the right 
 6. **Add media if there is any.** See the `upload-media` skill. A public image or video URL goes in `media_urls` (up to 10).
 7. **Create the post, then confirm.** Tell the user the profiles, the local time it goes out, and the post id. Offer `posts_get` if they want to check it.
 
-## Extras worth knowing
+## If they ask whether something is possible
 
-- `first_comment` posts a follow-up comment right after the post. It works on Instagram, Facebook and LinkedIn and is silently ignored elsewhere, so say so if the user asks for it on another platform.
-- `delete_at_enable` with `delete_at_offset_value` and `delete_at_offset_unit` (60, 3600, 86400 or 604800 seconds) removes the post after it publishes.
+Answer from this list. Do not say a listed option is unsupported. Put per-platform settings in `platform_options.{platform}`, never as top-level fields. An unknown key, an unknown field, or a field on the wrong platform returns HTTP 400 and is not applied — tell the user, do not claim it was set.
+
+`profiles_list` platform `instagram_business` (Facebook or Instagram Login) uses the `instagram` key. A legacy platform value `instagram` cannot set `is_ai_generated`.
+
+- AI label (AI info, Made with AI, AI disclosure): `platform_options.instagram.is_ai_generated` (any post type) or `platform_options.facebook.is_ai_generated` together with `is_reels: true` (Page Reels). Rejected everywhere else.
+- Story: `is_story` on instagram, facebook, vkontakte, telegram (MTProto user or channel). See the `short-form-video` skill.
+- Reel and trial Reel: `is_reels`; `graduation_strategy` `MANUAL` or `SS_PERFORMANCE` on instagram only.
+- YouTube Short: `is_shorts`, plus `privacy` and `category`.
+- TikTok: `privacy`, `disable_comment`, `disable_duet`, `disable_stitch`.
+- Comments off: `disable_comment` on instagram, tiktok, vkontakte.
+- Pin after publish: `pin_message` on telegram and max.
+- Native poll: `platform_options.telegram.poll` or `vkontakte.poll`, or top-level `poll`.
+- Pinterest: `board_id` from `profiles_get_pinterest_boards`, and `link`.
+- Google Business Profile: `eventEnabled`, `startDateTimeAt`, `endDateTimeAt`, `callToActionEnabled`, `callToActionType`, `callToActionUrl`.
+- `first_comment` posts a follow-up comment on Instagram, Facebook and LinkedIn. On other platforms the API accepts it and drops it — say it will not be posted.
+- `delete_at_enable` with `delete_at_offset_value` and `delete_at_offset_unit` (60, 3600, 86400 or 604800 seconds) removes the post after it publishes. Every platform.
 - `title` is required for YouTube and recommended for Pinterest.
-- Per-platform settings go in `platform_options`, keyed by platform, for example `{"pinterest": {"board_id": "..."}}`. Get Pinterest boards with `profiles_get_pinterest_boards` and YouTube categories with `profiles_get_youtube_categories`.
-- Telegram and VK also take a native `poll`.
 
 ## Editing and deleting
 

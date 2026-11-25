@@ -7,6 +7,8 @@ The MCP server is hosted at `https://mcp.onlypult.com/mcp`. This repository does
 - MCP docs: https://onlypult.com/dev/mcp.html
 - REST API: https://onlypult.com/dev/api.html
 
+[![Onlypult MCP connector](https://glama.ai/mcp/connectors/com.onlypult/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/com.onlypult/mcp)
+
 ## Skills
 
 | Skill | What it does |
